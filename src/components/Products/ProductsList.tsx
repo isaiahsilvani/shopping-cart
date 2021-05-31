@@ -10,9 +10,15 @@ const initialProducts = [
   { title: 'Hell Let Loose', price: 50, id: 'hll'}
 ]
 
+interface Product {
+  title: string,
+  price: number,
+  id: string
+}
+
 const ProductsList: React.FC<ProductsListProps> = ({}) => {
 
-    const [products, setProducts] = useState(initialProducts)
+    const [products, setProducts] = useState<Product[]>(initialProducts)
 
     return (
       <div>
@@ -24,12 +30,12 @@ const ProductsList: React.FC<ProductsListProps> = ({}) => {
           )}
         </label>
 
-        <button onClick={() => setProducts({
+        <button onClick={() => setProducts(prevProducts => [{
           title: 'half life',
           price: 100,
           id: 'h1'
-        })}>
-
+        }, ...prevProducts])}>
+          Add a Game
         </button>
       </div>
     );
