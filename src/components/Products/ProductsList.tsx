@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface ProductsListProps {
 
@@ -11,15 +11,26 @@ const initialProducts = [
 ]
 
 const ProductsList: React.FC<ProductsListProps> = ({}) => {
+
+    const [products, setProducts] = useState(initialProducts)
+
     return (
       <div>
         <label htmlFor="">
-          {initialProducts.map((product) => 
+          {products.map((product) => 
             <div key={product.id}>
               <span>{product.title} : ${product.price}</span>
             </div>
           )}
         </label>
+
+        <button onClick={() => setProducts({
+          title: 'half life',
+          price: 100,
+          id: 'h1'
+        })}>
+
+        </button>
       </div>
     );
 }
